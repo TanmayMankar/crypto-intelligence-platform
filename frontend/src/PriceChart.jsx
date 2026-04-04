@@ -43,6 +43,7 @@ export default function PriceChart({ prices = [],ma5 = [], coin }) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: true },
     },
@@ -55,5 +56,9 @@ export default function PriceChart({ prices = [],ma5 = [], coin }) {
     },
   };
 
-  return <Line key={prices.length} data={data} options={options} />;
+  return (
+    <div style={{ width: "100%", height: "100%" }}>
+      <Line key={prices.length} data={data} options={options} />
+    </div>
+  );
 }
