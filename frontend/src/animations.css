@@ -1,0 +1,188 @@
+/**
+ * Reusable dashboard animation utilities.
+ * Apply these classes in markup as needed; no component changes required by this file.
+ */
+
+/* ----- Page load ----- */
+.fade-in {
+  animation: dash-fade-in 0.75s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-1 {
+  animation-delay: 50ms;
+}
+.fade-in-delay-2 {
+  animation-delay: 100ms;
+}
+.fade-in-delay-3 {
+  animation-delay: 160ms;
+}
+.fade-in-delay-4 {
+  animation-delay: 220ms;
+}
+.fade-in-delay-5 {
+  animation-delay: 280ms;
+}
+.fade-in-delay-6 {
+  animation-delay: 340ms;
+}
+.fade-in-delay-7 {
+  animation-delay: 400ms;
+}
+.fade-in-delay-8 {
+  animation-delay: 460ms;
+}
+
+@keyframes dash-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----- Cards ----- */
+.card-hover {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease;
+  will-change: transform;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow:
+    0 22px 56px -14px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 52px -16px rgba(34, 211, 238, 0.12);
+}
+
+.glow-hover {
+  transition: box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.glow-hover:hover {
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.15),
+    0 0 48px -12px rgba(34, 211, 238, 0.18);
+}
+
+/* ----- Price cells ----- */
+.price-flash-up {
+  animation: dash-price-flash-up 0.65s ease-out;
+}
+
+@keyframes dash-price-flash-up {
+  0% {
+    background-color: transparent;
+  }
+  35% {
+    background-color: rgba(52, 211, 153, 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.price-flash-down {
+  animation: dash-price-flash-down 0.65s ease-out;
+}
+
+@keyframes dash-price-flash-down {
+  0% {
+    background-color: transparent;
+  }
+  35% {
+    background-color: rgba(248, 113, 113, 0.16);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* ----- Background ----- */
+.background-gradient-animate {
+  position: relative;
+  background-color: #07080c;
+  overflow: hidden;
+}
+
+.background-gradient-animate::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(34, 211, 238, 0.07) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(99, 102, 241, 0.055) 0%,
+      transparent 52%
+    );
+  animation: dash-bg-drift 52s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-gradient-animate > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes dash-bg-drift {
+  0%,
+  100% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  33% {
+    transform: translate(2.5%, -2%) scale(1.04);
+  }
+  66% {
+    transform: translate(-2%, 2.5%) scale(1.02);
+  }
+}
+
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-in-delay-1,
+  .fade-in-delay-2,
+  .fade-in-delay-3,
+  .fade-in-delay-4,
+  .fade-in-delay-5,
+  .fade-in-delay-6,
+  .fade-in-delay-7,
+  .fade-in-delay-8 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    animation-delay: 0ms;
+  }
+
+  .card-hover:hover,
+  .glow-hover:hover {
+    transform: none;
+  }
+
+  .card-hover,
+  .glow-hover {
+    transition-duration: 0.01ms;
+  }
+
+  .price-flash-up,
+  .price-flash-down {
+    animation: none;
+  }
+
+  .background-gradient-animate::before {
+    animation: none;
+  }
+}
